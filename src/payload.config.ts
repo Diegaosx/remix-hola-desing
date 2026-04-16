@@ -30,11 +30,17 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 const smtpConfigured =
   process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS;
 
-const r2Configured =
-  process.env.R2_ACCOUNT_ID &&
-  process.env.R2_ACCESS_KEY_ID &&
-  process.env.R2_SECRET_ACCESS_KEY &&
-  process.env.R2_BUCKET;
+const r2 = {
+  accountId: process.env.CLOUDFLARE_ACCOUNT_ID ?? process.env.R2_ACCOUNT_ID,
+  accessKeyId:
+    process.env.CLOUDFLARE_R2_ACCESS_KEY_ID ?? process.env.R2_ACCESS_KEY_ID,
+  secretAccessKey:
+    process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY ?? process.env.R2_SECRET_ACCESS_KEY,
+  bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME ?? process.env.R2_BUCKET,
+  publicUrl: process.env.CLOUDFLARE_R2_PUBLIC_URL ?? process.env.R2_PUBLIC_URL,
+};
+
+const r2Configured = Boolean(r2.accountId && r2.accessKeyId && r2.secretAccessKey && r2.bucket);
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
@@ -74,10 +80,6 @@ export default buildConfig({
     // versionadas: `pnpm payload migrate:create` + `pnpm migrate` no start.
     push: process.env.PAYLOAD_PUSH !== 'false',
   }),
-  i18n: {
-    supportedLanguages: {} as Record<string, never>,
-    fallbackLanguage: 'pt',
-  },
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
@@ -101,13 +103,13 @@ export default buildConfig({
     ? [
         s3Storage({
           collections: { media: true },
-          bucket: process.env.R2_BUCKET!,
+          bucket: r2.bucket!,
           config: {
             region: 'auto',
-            endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+            endpoint: `https://${r2.accountId}.r2.cloudflarestorage.com`,
             credentials: {
-              accessKeyId: process.env.R2_ACCESS_KEY_ID!,
-              secretAccessKey: process.env.R2_SECRET_ACCESS_KEY!,
+              accessKeyId: r2.accessKeyId!,
+              secretAccessKey: r2.secretAccessKey!,
             },
             forcePathStyle: true,
           },

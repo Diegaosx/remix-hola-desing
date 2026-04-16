@@ -3,9 +3,10 @@ import { withPayload } from '@payloadcms/next/withPayload';
 
 const isDev = process.env.NODE_ENV !== 'production';
 
+const r2PublicUrl = process.env.CLOUDFLARE_R2_PUBLIC_URL ?? process.env.R2_PUBLIC_URL;
 const r2Host = (() => {
   try {
-    return process.env.R2_PUBLIC_URL ? new URL(process.env.R2_PUBLIC_URL).host : null;
+    return r2PublicUrl ? new URL(r2PublicUrl).host : null;
   } catch {
     return null;
   }
