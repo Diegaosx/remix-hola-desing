@@ -1,3 +1,5 @@
-// Gerado/mantido em paralelo ao importMap.js.
-// Adicione aqui os componentes custom quando registrá-los no payload.config.ts.
-export const importMap: Record<string, unknown>;
+// Gerado automaticamente por `payload generate:importmap` (rodado no build).
+// Este .d.ts apenas informa ao TypeScript que o módulo existe; o conteúdo real
+// é sobrescrito a cada build no Railway.
+import type { ImportMap } from 'payload';
+export const importMap: ImportMap;
