@@ -1,0 +1,133 @@
+/* =====================================================================
+ * Tema "Noir Curator" para o admin do Payload.
+ * Sobrescreve apenas as variáveis CSS que o Payload expõe, mantendo
+ * compatibilidade com futuras atualizações do admin.
+ * ===================================================================== */
+
+:root {
+  /* Tipografia editorial */
+  --font-body: 'Manrope', 'Inter', system-ui, sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
+}
+
+html[data-theme='dark'],
+html:not([data-theme='light']) {
+  /* Background / elevations — paleta roxa escura */
+  --theme-bg: #131313;
+  --theme-input-bg: #1b1b1b;
+  --theme-elevation-0: #0e0e0e;
+  --theme-elevation-50: #1b1b1b;
+  --theme-elevation-100: #1f1f1f;
+  --theme-elevation-150: #2a2a2a;
+  --theme-elevation-200: #353535;
+  --theme-elevation-250: #3d2960;
+  --theme-elevation-300: #49454d;
+  --theme-elevation-400: #65587d;
+  --theme-elevation-500: #897ba2;
+  --theme-elevation-600: #cbc4ce;
+  --theme-elevation-700: #d0bef3;
+  --theme-elevation-800: #e2e2e2;
+  --theme-elevation-900: #ffffff;
+  --theme-elevation-1000: #ffffff;
+
+  /* Texto */
+  --theme-text: #e2e2e2;
+
+  /* Acento (primary) — roxo lavanda da paleta "Noir" */
+  --theme-success-50: #201536;
+  --theme-success-500: #cfbfea;
+  --theme-success-750: #eaddff;
+  --theme-success-900: #ffffff;
+
+  /* Borda de foco */
+  --style-radius-s: 0;
+  --style-radius-m: 0;
+  --style-radius-l: 0;
+
+  /* Links e ações */
+  --theme-warning-500: #d4bbfd;
+  --theme-error-500: #ffb4ab;
+}
+
+/* Sidebar — acabamento editorial */
+.nav__content,
+.nav {
+  font-family: var(--font-body);
+  letter-spacing: 0.02em;
+}
+
+/* Título do app no topo da sidebar */
+.nav__header__title,
+.app-header__title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+/* Grupos da sidebar — labels em caps com tracking wide */
+.nav-group__label,
+.nav-group-label {
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.65rem;
+  opacity: 0.55;
+}
+
+/* Botões primários — sem arredondamento, caps + tracking */
+.btn--style-primary,
+button.btn--style-primary {
+  border-radius: 0 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+}
+
+/* Inputs e textareas */
+input,
+textarea,
+select,
+.rs__control {
+  border-radius: 0 !important;
+}
+
+/* Cards de dashboard — bordas duras */
+.dashboard__card,
+.collection-list,
+.card,
+.field-type {
+  border-radius: 0 !important;
+}
+
+/* Headings de forms em serif itálico */
+.collection-edit__header h1,
+.doc-header h1,
+.global-edit__header h1 {
+  font-family: var(--font-serif);
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+/* Abas — contraste mais marcado */
+.tabs-field__tab-button--active {
+  font-weight: 700;
+}
+
+/* Tabelas — tipografia mais sóbria */
+.table {
+  font-family: var(--font-body);
+}
+
+/* Tela de login — visual mais editorial */
+.login {
+  background:
+    radial-gradient(circle at 50% 20%, rgba(45, 31, 74, 0.35) 0%, transparent 60%),
+    #0e0e0e;
+}
+
+.login__brand {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 3rem;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
