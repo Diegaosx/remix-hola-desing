@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@200;300;400;600&amp;family=Montserrat:wght@300&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#503c74",
+                    "on-surface": "#e2e2e2",
+                    "inverse-on-surface": "#303030",
+                    "secondary-fixed": "#eaddff",
+                    "on-secondary-container": "#c2b0e5",
+                    "tertiary-fixed-dim": "#d4bbfd",
+                    "surface-container-highest": "#353535",
+                    "tertiary": "#d4bbfd",
+                    "inverse-primary": "#65587d",
+                    "surface": "#131313",
+                    "surface-bright": "#393939",
+                    "on-secondary-fixed": "#21133e",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-fixed": "#ebdcff",
+                    "on-tertiary": "#39255c",
+                    "secondary-fixed-dim": "#d0bef3",
+                    "on-primary-container": "#897ba2",
+                    "surface-container": "#1f1f1f",
+                    "surface-container-high": "#2a2a2a",
+                    "inverse-surface": "#e2e2e2",
+                    "surface-dim": "#131313",
+                    "outline": "#948f98",
+                    "primary-fixed-dim": "#cfbfea",
+                    "outline-variant": "#49454d",
+                    "surface-container-low": "#1b1b1b",
+                    "on-tertiary-container": "#8d77b3",
+                    "on-secondary-fixed-variant": "#4d3f6c",
+                    "primary-fixed": "#eaddff",
+                    "surface-tint": "#cfbfea",
+                    "secondary-container": "#50416e",
+                    "on-error": "#690005",
+                    "on-secondary": "#372954",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-tertiary-fixed": "#240e46",
+                    "on-background": "#e2e2e2",
+                    "error-container": "#93000a",
+                    "on-surface-variant": "#cbc4ce",
+                    "on-primary-fixed": "#201536",
+                    "surface-variant": "#353535",
+                    "on-primary-fixed-variant": "#4d4164",
+                    "secondary": "#d0bef3",
+                    "tertiary-container": "#200a43",
+                    "background": "#131313",
+                    "error": "#ffb4ab",
+                    "primary": "#cfbfea",
+                    "primary-container": "#1d1233",
+                    "on-primary": "#362a4d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0rem",
+                    "lg": "0rem",
+                    "xl": "0rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Libre Baskerville", "serif"],
+                    "body": ["Montserrat", "sans-serif"],
+                    "label": ["Manrope", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 24
+    }
+body {
+    background-color: #131313;
+    background-image: radial-gradient(circle at 50% 50%, rgba(45, 31, 74, 0.15) 0%, transparent 100%);
+    position: relative
+    }
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAS-mNhJzUtvzu4x6vACj16wdqj0OqqS0eC06kEcif89v3di07l6l8ykLTISKpWcFfiJSfiS8Z9GTfPEqxZM66_Fz0cJP4IRG4cRDQ6EGl3s01wABlxFwMDOnZ8rg4CcmB6fKpa2W97wIZ-ieIiv_vo8RsT5yYcICUoN8WgDIihU2xwXjtnZaWdczWjHnAF5QViVFNIKRMBjIc5ik_IoZp20cD1B8Yp6wsQE5pwqviqKynIxHA0k1CiR0R5SbKqtaaNOJyZog5E5XY);
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9999
+    }
+.text-glow {
+    text-shadow: 0 0 30px rgba(207, 191, 234, 0.2)
+    }</style>
+</head>
+<body class="text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 flex justify-between items-center w-full px-12 py-8 max-w-full bg-transparent backdrop-blur-xl z-50">
+<div class="text-3xl font-serif italic text-white leading-none">¡H!</div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="font-label all-caps text-xs tracking-widest text-white/60 hover:text-white transition-opacity duration-300" href="#">Portfolio</a>
+<a class="font-label all-caps text-xs tracking-widest text-white/60 hover:text-white transition-opacity duration-300" href="#">Strategy</a>
+<a class="font-label all-caps text-xs tracking-widest text-white/60 hover:text-white transition-opacity duration-300" href="#">Culture</a>
+<a class="font-label all-caps text-xs tracking-widest text-white border-b border-white/40 pb-1" href="#">Contato</a>
+</div>
+<button class="bg-white text-primary-container px-8 py-3 text-xs font-label uppercase tracking-[0.2em] hover:scale-95 transition-transform">
+            Diagnóstico
+        </button>
+</nav>
+<main class="pt-40 pb-20 px-6 md:px-12 lg:px-24">
+<!-- Hero Section -->
+<header class="mb-32">
+<h1 class="font-headline text-[4rem] md:text-[7rem] lg:text-[9rem] leading-[0.9] text-white italic tracking-tighter text-glow">
+                Vamos<br/>conversar?
+            </h1>
+<div class="h-px w-24 bg-primary mt-12 opacity-40"></div>
+</header>
+<!-- Main Layout: 2 Columns -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
+<!-- Left: Contact Form -->
+<div class="lg:col-span-7">
+<p class="font-label text-xs uppercase tracking-[0.3em] text-primary mb-12">Manifesto de Interesse</p>
+<form class="space-y-12 max-w-2xl">
+<div class="group relative">
+<label class="block font-label text-[10px] uppercase tracking-widest text-outline-variant mb-2 group-focus-within:text-primary transition-colors">Seu Nome</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-white placeholder:text-white/10 focus:ring-0 focus:border-primary transition-all" placeholder="Como devemos lhe chamar?" type="text"/>
+</div>
+<div class="group relative">
+<label class="block font-label text-[10px] uppercase tracking-widest text-outline-variant mb-2 group-focus-within:text-primary transition-colors">E-mail Corporativo</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-white placeholder:text-white/10 focus:ring-0 focus:border-primary transition-all" placeholder="nome@suaempresa.com" type="email"/>
+</div>
+<div class="group relative">
+<label class="block font-label text-[10px] uppercase tracking-widest text-outline-variant mb-2 group-focus-within:text-primary transition-colors">Mensagem</label>
+<textarea class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-white placeholder:text-white/10 focus:ring-0 focus:border-primary transition-all resize-none" placeholder="Conte-nos sobre seu desafio" rows="1"></textarea>
+</div>
+<button class="w-full md:w-auto bg-white text-primary-container px-16 py-5 text-sm font-label uppercase tracking-[0.2em] hover:bg-primary hover:text-on-primary-fixed transition-colors">
+                        Enviar Proposta
+                    </button>
+</form>
+</div>
+<!-- Right: Info & WhatsApp -->
+<div class="lg:col-span-5 space-y-20 sticky top-40">
+<section>
+<p class="font-label text-xs uppercase tracking-[0.3em] text-primary mb-8">Conexões Diretas</p>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="alternate_email">alternate_email</span>
+<div>
+<p class="font-label text-[10px] uppercase tracking-tighter text-outline-variant">Email</p>
+<a class="text-xl text-white font-light hover:text-primary transition-colors" href="mailto:hola@design.com">hola@design.com</a>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="location_on">location_on</span>
+<div>
+<p class="font-label text-[10px] uppercase tracking-tighter text-outline-variant">Studio</p>
+<p class="text-xl text-white font-light">Av. Paulista, 1200. São Paulo, SP.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-container p-12 border-l-2 border-primary">
+<h3 class="font-headline text-3xl text-white italic mb-4">Urgência Criativa?</h3>
+<p class="text-sm text-on-surface-variant font-light mb-8 leading-relaxed">
+                        Para consultas imediatas ou colaborações rápidas, nosso canal direto via WhatsApp está disponível em horário comercial.
+                    </p>
+<a class="inline-flex items-center gap-4 bg-[#25D366] text-surface-container-lowest px-10 py-5 font-label uppercase text-xs tracking-widest hover:scale-105 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="chat" style="font-variation-settings: 'FILL' 1;">chat</span>
+                        WhatsApp Direct
+                    </a>
+</section>
+<div class="aspect-square w-full grayscale opacity-40 mix-blend-luminosity overflow-hidden">
+<img alt="Studio view" class="w-full h-full object-cover" data-alt="minimalist architectural interior of a design studio with concrete walls and dramatic shadows during evening" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMUnsu1zYrNLLujfW1Fxg680IkdX_RKDgegsc_a-ZEEVDFyMvoR7-0Ia-z3QXwERFMH96UUG05yrPBeXRZd9AN6hk7b9P3sNHXIBYUus6zqk0MgIU0EREpKZW4gCuuw4mwx53N0iyE92Gu99Nb1SVhicWitaJhKrp7TufvKgQcJ8bf1sxhSSjtO9nMzU7h9YpTvKL6adyWMMSUYfJRvxPDGva1Y2nILp6m82enkRpuArphMRueHOJFDpNVkafv2Hhh0aO96A2WsY8"/>
+</div>
+</div>
+</div>
+<!-- FAQ Section -->
+<section class="mt-60 border-t border-outline-variant/20 pt-32">
+<div class="max-w-4xl mx-auto">
+<h2 class="font-headline text-5xl text-white italic mb-20 text-center">Frequentes</h2>
+<div class="space-y-4">
+<!-- FAQ Item -->
+<details class="group bg-surface-container-low transition-colors duration-500 open:bg-surface-container">
+<summary class="flex justify-between items-center p-8 cursor-pointer list-none">
+<span class="font-label text-sm uppercase tracking-widest text-white">O que é rebranding?</span>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="px-8 pb-8 text-on-surface-variant font-light text-sm leading-relaxed max-w-2xl">
+                            Rebranding é a evolução estratégica da percepção de uma marca. Não se trata apenas de um novo logo, mas de alinhar a identidade visual, voz e valores aos novos objetivos de mercado do negócio.
+                        </div>
+</details>
+<details class="group bg-surface-container-low transition-colors duration-500 open:bg-surface-container">
+<summary class="flex justify-between items-center p-8 cursor-pointer list-none">
+<span class="font-label text-sm uppercase tracking-widest text-white">Quanto custa uma identidade visual?</span>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="px-8 pb-8 text-on-surface-variant font-light text-sm leading-relaxed max-w-2xl">
+                            Nossos projetos são personalizados de acordo com o escopo e complexidade. Iniciamos com uma fase de diagnóstico para entender as necessidades específicas antes de definir o investimento necessário.
+                        </div>
+</details>
+<details class="group bg-surface-container-low transition-colors duration-500 open:bg-surface-container">
+<summary class="flex justify-between items-center p-8 cursor-pointer list-none">
+<span class="font-label text-sm uppercase tracking-widest text-white">Qual o tempo de entrega?</span>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="px-8 pb-8 text-on-surface-variant font-light text-sm leading-relaxed max-w-2xl">
+                            Um projeto padrão de estratégia e identidade visual leva entre 6 a 10 semanas. Valorizamos a profundidade e a precisão em cada etapa do processo curatorial.
+                        </div>
+</details>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-12 pt-40 pb-12 flex flex-col items-center bg-[#1d1233] relative overflow-hidden">
+<div class="text-[10rem] font-serif italic text-white opacity-5 absolute bottom-0 left-0 select-none">¡HOLA!</div>
+<div class="z-10 flex flex-col md:flex-row gap-12 mb-20">
+<a class="font-label text-xs uppercase tracking-widest text-white/50 hover:text-white transition-all duration-500" href="#">Instagram</a>
+<a class="font-label text-xs uppercase tracking-widest text-white/50 hover:text-white transition-all duration-500" href="#">LinkedIn</a>
+<a class="font-label text-xs uppercase tracking-widest text-white/50 hover:text-white transition-all duration-500" href="#">Behance</a>
+<a class="font-label text-xs uppercase tracking-widest text-white underline underline-offset-4" href="#">Contact</a>
+</div>
+<p class="font-body text-[10px] text-white/30 tracking-[0.4em] uppercase">© 2024 ¡HOLA! Design. All rights reserved.</p>
+<div class="font-headline italic text-[12rem] opacity-5 absolute -right-20 top-20 pointer-events-none select-none">Curadoria</div>
+</footer>
+</body></html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&amp;family=Montserrat:wght@300;400&amp;family=Manrope:wght@300;400;600;800&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#503c74",
+                      "on-surface": "#e2e2e2",
+                      "inverse-on-surface": "#303030",
+                      "secondary-fixed": "#eaddff",
+                      "on-secondary-container": "#c2b0e5",
+                      "tertiary-fixed-dim": "#d4bbfd",
+                      "surface-container-highest": "#353535",
+                      "tertiary": "#d4bbfd",
+                      "inverse-primary": "#65587d",
+                      "surface": "#131313",
+                      "surface-bright": "#393939",
+                      "on-secondary-fixed": "#21133e",
+                      "on-error-container": "#ffdad6",
+                      "tertiary-fixed": "#ebdcff",
+                      "on-tertiary": "#39255c",
+                      "secondary-fixed-dim": "#d0bef3",
+                      "on-primary-container": "#897ba2",
+                      "surface-container": "#1f1f1f",
+                      "surface-container-high": "#2a2a2a",
+                      "inverse-surface": "#e2e2e2",
+                      "surface-dim": "#131313",
+                      "outline": "#948f98",
+                      "primary-fixed-dim": "#cfbfea",
+                      "outline-variant": "#49454d",
+                      "surface-container-low": "#1b1b1b",
+                      "on-tertiary-container": "#8d77b3",
+                      "on-secondary-fixed-variant": "#4d3f6c",
+                      "primary-fixed": "#eaddff",
+                      "surface-tint": "#cfbfea",
+                      "secondary-container": "#50416e",
+                      "on-error": "#690005",
+                      "on-secondary": "#372954",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-tertiary-fixed": "#240e46",
+                      "on-background": "#e2e2e2",
+                      "error-container": "#93000a",
+                      "on-surface-variant": "#cbc4ce",
+                      "on-primary-fixed": "#201536",
+                      "surface-variant": "#353535",
+                      "on-primary-fixed-variant": "#4d4164",
+                      "secondary": "#d0bef3",
+                      "tertiary-container": "#200a43",
+                      "background": "#131313",
+                      "error": "#ffb4ab",
+                      "primary": "#cfbfea",
+                      "primary-container": "#1d1233",
+                      "on-primary": "#362a4d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0px",
+                      "lg": "0px",
+                      "xl": "0px",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Newsreader", "serif"],
+                      "body": ["Montserrat", "sans-serif"],
+                      "label": ["Manrope", "sans-serif"]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .baskerville { font-family: 'Newsreader', serif; }
+        .montserrat { font-family: 'Montserrat', sans-serif; }
+        .manrope { font-family: 'Manrope', sans-serif; }
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-auto-rows: 200px;
+            gap: 2rem;
+        }
+        .masonry-item-tall { grid-row: span 3; }
+        .masonry-item-wide { grid-column: span 2; }
+        .masonry-item-standard { grid-row: span 2; }
+      </style>
+</head>
+<body class="bg-primary-container text-on-surface selection:bg-primary selection:text-on-primary overflow-x-hidden">
+<div class="grain-overlay"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 flex justify-between items-center w-full px-12 py-8 max-w-full bg-transparent backdrop-blur-xl z-50">
+<div class="text-3xl font-serif italic text-white">¡H!</div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="manrope text-xs tracking-widest uppercase text-white border-b border-white/40 pb-1 hover:text-white transition-opacity duration-300" href="#">Portfolio</a>
+<a class="manrope text-xs tracking-widest uppercase text-white/60 hover:text-white transition-opacity duration-300" href="#">Strategy</a>
+<a class="manrope text-xs tracking-widest uppercase text-white/60 hover:text-white transition-opacity duration-300" href="#">Culture</a>
+</div>
+<button class="manrope text-xs tracking-widest uppercase bg-white text-primary-container px-8 py-3 font-bold hover:scale-95 transition-transform duration-300">Diagnóstico</button>
+</nav>
+<main class="pt-40">
+<!-- Hero Section -->
+<section class="relative px-12 py-24 mb-24 overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none opacity-5 select-none">
+<span class="baskerville italic text-[25vw] leading-none">Marcas</span>
+</div>
+<div class="relative z-10 max-w-4xl">
+<p class="manrope text-xs tracking-[0.3em] uppercase mb-6 text-primary">Estúdio Estratégico</p>
+<h1 class="baskerville text-7xl md:text-9xl leading-[0.9] font-extralight tracking-tight text-white mb-8">
+                    Projetos que <br/> <span class="italic">transformaram</span> <br/> negócios
+                </h1>
+<div class="h-[1px] w-24 bg-white/20 mt-12"></div>
+</div>
+</section>
+<!-- Filter -->
+<section class="px-12 mb-20 flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-outline-variant/10 pb-12">
+<div class="flex flex-wrap gap-8">
+<button class="manrope text-xs tracking-widest uppercase text-white border-b border-white pb-1">Todos</button>
+<button class="manrope text-xs tracking-widest uppercase text-white/40 hover:text-white transition-colors">Criação</button>
+<button class="manrope text-xs tracking-widest uppercase text-white/40 hover:text-white transition-colors">Rebranding</button>
+</div>
+<div class="manrope text-[10px] tracking-widest uppercase text-white/30">
+                Visualizando 05 Projetos Selecionados
+            </div>
+</section>
+<!-- Grid Portfolio -->
+<section class="px-12 mb-40">
+<div class="masonry-grid">
+<!-- Project 1: Azucena -->
+<div class="masonry-item-tall group relative overflow-hidden bg-surface-container-high transition-all duration-700">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100" data-alt="Minimalist fashion editorial photography with high contrast shadows and soft luxury fabrics on a marble surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_GiNMK52Pvxj5djAX0oGtuefR0FEzKiz25TktTt-V1CHyAAbdmNzCCN60Gjp23RK-ghdYWiLo3E4orylCzkqSIXfknO87pbAE2DUeRgjzWeJneCk3Gvafe1pT46Wk1932bUtaTRx0DecKCJmFhN922dMNCTjvgAxh7L6HIdhd-Id5RF2NlKhuag38SAQaIsGhe3uXXGD-uIKpPspKCTEZfXFEqpLSxvfu7bBj78AEib6vPgMsZAD3XdeyBdNo43CG4uCINKn3dtY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/90 via-transparent to-transparent flex flex-col justify-end p-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="manrope text-[10px] tracking-widest uppercase text-primary mb-2">Criação · Editorial</span>
+<h3 class="baskerville text-4xl text-white italic">Azucena</h3>
+</div>
+</div>
+<!-- Project 2: Dani Jamur -->
+<div class="masonry-item-standard group relative overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100" data-alt="Architecture abstract with sharp lines and deep shadows against a clear night sky, minimalist brutalist aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_tBI_yHV7_9IyJPO__P9AFavKFBMg1cK4PCf1an6XsMl7524svi6PwdyxPt8OpvH6H-cblCpovg4kvFWQBoHwLTKcW8wHvboggFT7uX08Zb037HpY0SC-8QOof54wsmpNB9A1MQCKZ0PXDhdJNsj4Zbi6fVkZNqA-TLm-gC4fiQWa6psY6SyXd9MEFPe-NGhG6kY3BWx1zgkX0jMSuocfsBvKHYkBMvw3Q8cIM5bnOsDA6c2YTJSGXUh3_LyOgWyeBd2i7eUto4w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/90 via-transparent to-transparent flex flex-col justify-end p-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="manrope text-[10px] tracking-widest uppercase text-primary mb-2">Rebranding</span>
+<h3 class="baskerville text-4xl text-white italic">Dani Jamur</h3>
+</div>
+</div>
+<!-- Project 3: LM Mentora -->
+<div class="masonry-item-standard group relative overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100" data-alt="Macro photography of luxury paper texture with gold foil typography and clean minimalist layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFHAlMyaTpaitB4adNymQgRcdtx3D5SP4kkTlvyX35IivEwQGsp8yvbU1ejFWI-6w1kFndBJb23CvzAP6hIuKFuv-gxy26wbn13F15RDBKYuiO56HSqaTdTkq1JoUFS7U0hJP_9NUyiHy03qZqJ_Ok3DQYalqKYtmU4Q6VM1yCr60orVaPaB-QSizz4Kdd7K8UWCH_EVx35cOgSaoq5KiniqwSMcJsElv1mexaeyw5Jo6N9NEOOzHqgsPIbstF5_01OrXzVPF43E0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/90 via-transparent to-transparent flex flex-col justify-end p-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="manrope text-[10px] tracking-widest uppercase text-primary mb-2">Criação · Digital</span>
+<h3 class="baskerville text-4xl text-white italic">LM Mentora</h3>
+</div>
+</div>
+<!-- Project 4: Lollita -->
+<div class="masonry-item-tall group relative overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100" data-alt="Elegant interior design scene with mid-century modern furniture and dramatic atmospheric lighting through a window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPfChOFlI7c2ivYvs9ra94uJLFnWf01LgMhOB81QohLAGJCz-FKCWZALzxLy8ckSDGH_2eC6ldUw1grBJvSV1hLNnZZlCbZFOF146tgGonDoFLilqf2WKgOIW0zDdF4RwVu_ZrYBCe68JzoSwkK8gFRGwrC3gLOm0lrnJFL5nDvd9pT8tU1UQiUe9E2RwpbiRJ9ap7W9nznImUbOjz9zg3hwPYX0yYmQwsy3lpldrDZcVj0UzOnJpKHbvd84gcxBVr6P9qM255xg0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/90 via-transparent to-transparent flex flex-col justify-end p-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="manrope text-[10px] tracking-widest uppercase text-primary mb-2">Visual Identity</span>
+<h3 class="baskerville text-4xl text-white italic">Lollita</h3>
+</div>
+</div>
+<!-- Project 5: My Choice -->
+<div class="masonry-item-wide group relative overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100" data-alt="Artistic blurred motion of a crowd in an urban setting with neon purple and deep black tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGiDCk1dikfCSU-1Q0vhDnrv5gRXSSHmJqhgl9r-62dmjYomLY-_Z8-B4Qp4fL9wATZ3IyAKnt27wtUkMp-Yk1qiibzUHTQ7R2NnLT3elqwE2Zrxzk3zNl0mxq5kOJhUd9_E6GNwenMEguryoWIBWXx4_dudIGi4t26yN239qCVX44Q3nRpVMGs3iHZSEDdad7iBeNrPfoCA3KDMhd0ttdXAtVRy-MERmmuD7e1qRrfo7FyGKGMdvb75HXpq4bn0amELCGEIy0_CU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/90 via-transparent to-transparent flex flex-col justify-end p-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="manrope text-[10px] tracking-widest uppercase text-primary mb-2">Positioning</span>
+<h3 class="baskerville text-4xl text-white italic">My Choice</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-12 py-40 bg-secondary-container/20 flex flex-col items-center text-center">
+<h2 class="baskerville text-6xl text-white mb-10 max-w-2xl leading-tight">Vamos construir sua <span class="italic text-primary">narrativa</span> juntos?</h2>
+<button class="manrope text-xs tracking-widest uppercase border border-white/20 px-12 py-5 text-white hover:bg-white hover:text-primary-container transition-all duration-500">Solicitar Orçamento</button>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-12 pt-40 pb-12 flex flex-col items-center bg-[#1d1233] relative overflow-hidden">
+<div class="text-[10rem] font-serif italic text-white opacity-5 absolute bottom-0 left-0 select-none pointer-events-none">¡HOLA!</div>
+<div class="w-full grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10 mb-24">
+<div class="flex flex-col gap-6">
+<span class="manrope text-[10px] tracking-widest uppercase text-white/40">Conecte-se</span>
+<div class="flex flex-col gap-3">
+<a class="montserrat text-sm light tracking-wide text-white/50 hover:text-white transition-all duration-500" href="#">Instagram</a>
+<a class="montserrat text-sm light tracking-wide text-white/50 hover:text-white transition-all duration-500" href="#">LinkedIn</a>
+<a class="montserrat text-sm light tracking-wide text-white/50 hover:text-white transition-all duration-500" href="#">Behance</a>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<span class="manrope text-[10px] tracking-widest uppercase text-white/40">Escritório</span>
+<p class="montserrat text-sm light tracking-wide text-white/50">São Paulo, Brasil <br/> Remote Worldwide</p>
+</div>
+<div class="flex flex-col gap-6 md:items-end">
+<span class="manrope text-[10px] tracking-widest uppercase text-white/40">Fale Conosco</span>
+<a class="baskerville text-2xl italic text-white underline underline-offset-8 decoration-white/20 hover:decoration-white transition-all" href="mailto:hello@holadesign.com">hello@holadesign.com</a>
+</div>
+</div>
+<div class="w-full h-[1px] bg-white/5 mb-12"></div>
+<div class="flex flex-col md:flex-row justify-between w-full gap-8">
+<p class="montserrat text-[10px] light tracking-widest text-white/30 uppercase">© 2024 ¡HOLA! Design. All rights reserved.</p>
+<div class="flex gap-8">
+<a class="montserrat text-[10px] light tracking-widest text-white/30 uppercase hover:text-white" href="#">Privacy Policy</a>
+<a class="montserrat text-[10px] light tracking-widest text-white/30 uppercase hover:text-white" href="#">Terms of Service</a>
+</div>
+</div>
+<div class="baskerville italic text-[12rem] opacity-5 select-none pointer-events-none mt-20">Curatorship</div>
+</footer>
+</body></html>

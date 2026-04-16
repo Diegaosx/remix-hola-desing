@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#503c74",
+                        "on-surface": "#e2e2e2",
+                        "inverse-on-surface": "#303030",
+                        "secondary-fixed": "#eaddff",
+                        "on-secondary-container": "#c2b0e5",
+                        "tertiary-fixed-dim": "#d4bbfd",
+                        "surface-container-highest": "#353535",
+                        "tertiary": "#d4bbfd",
+                        "inverse-primary": "#65587d",
+                        "surface": "#131313",
+                        "surface-bright": "#393939",
+                        "on-secondary-fixed": "#21133e",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed": "#ebdcff",
+                        "on-tertiary": "#39255c",
+                        "secondary-fixed-dim": "#d0bef3",
+                        "on-primary-container": "#897ba2",
+                        "surface-container": "#1f1f1f",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-surface": "#e2e2e2",
+                        "surface-dim": "#131313",
+                        "outline": "#948f98",
+                        "primary-fixed-dim": "#cfbfea",
+                        "outline-variant": "#49454d",
+                        "surface-container-low": "#1b1b1b",
+                        "on-tertiary-container": "#8d77b3",
+                        "on-secondary-fixed-variant": "#4d3f6c",
+                        "primary-fixed": "#eaddff",
+                        "surface-tint": "#cfbfea",
+                        "secondary-container": "#50416e",
+                        "on-error": "#690005",
+                        "on-secondary": "#372954",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed": "#240e46",
+                        "on-background": "#e2e2e2",
+                        "error-container": "#93000a",
+                        "on-surface-variant": "#cbc4ce",
+                        "on-primary-fixed": "#201536",
+                        "surface-variant": "#353535",
+                        "on-primary-fixed-variant": "#4d4164",
+                        "secondary": "#d0bef3",
+                        "tertiary-container": "#200a43",
+                        "background": "#131313",
+                        "error": "#ffb4ab",
+                        "primary": "#cfbfea",
+                        "primary-container": "#1d1233",
+                        "on-primary": "#362a4d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            background-image: radial-gradient(#1d1233 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            color: #e2e2e2;
+        }
+        .grain-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .text-mask-up {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 2px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary selection:text-on-primary">
+<div class="grain-overlay"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 flex justify-between items-center w-full px-12 py-8 max-w-full bg-transparent backdrop-blur-xl z-50">
+<div class="text-3xl font-headline italic text-white leading-none">¡H!</div>
+<div class="hidden md:flex items-center gap-12">
+<a class="font-label text-xs tracking-widest uppercase text-white/60 hover:text-white transition-opacity duration-300" href="#">Portfolio</a>
+<a class="font-label text-xs tracking-widest uppercase text-white/60 hover:text-white transition-opacity duration-300" href="#">Strategy</a>
+<a class="font-label text-xs tracking-widest uppercase text-white border-b border-white/40 pb-1" href="#">Culture</a>
+</div>
+<button class="bg-white text-primary-container font-label text-xs tracking-widest uppercase px-8 py-3 transition-transform active:scale-95">Diagnóstico</button>
+</nav>
+<main class="pt-32">
+<!-- Hero Section -->
+<section class="relative min-height-[921px] px-12 flex flex-col justify-end pb-24 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Mariana Queiroz Portrait" class="w-full h-full object-cover grayscale opacity-60" data-alt="Editorial black and white portrait of a professional woman with sharp lighting and deep shadows, minimalist high-fashion studio aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMUEGlUuUME4aBuv9Q7Q99Hp08_YHlbXP5bVqkG0ipCspvpXmma7z1BKZlkSkBibXhcvWVCUU-WeSmP7vqAJ8ucfOwmrZ7_iagBvdIsbP4xS8cGY0t6ZwxohiK8bcsrbXunAg77vzXElAWEF3Eo4eMTnGCbyLshwVrpXIST45QRtq2cWqGtKiNNod09l_g1WGsEBuGBAPSuKAAXlQagJiIeglNJgkpO2l1Wd_mHcZ-MRT5BpSJdlCle1nGdCa28p3607TY4QkCYK4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-5xl">
+<p class="font-label text-xs tracking-[0.4em] uppercase mb-6 text-white/50">Founder &amp; Creative Director</p>
+<h1 class="font-headline text-[clamp(3.5rem,10vw,8rem)] leading-[0.9] text-white italic text-mask-up">
+                    Mariana Queiroz <br/>
+<span class="not-italic opacity-90">— Estrategista de Marca</span>
+</h1>
+</div>
+</section>
+<!-- Story Section -->
+<section class="px-12 py-40 bg-surface">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-20 items-start">
+<div class="md:col-span-7">
+<h2 class="font-headline text-5xl md:text-7xl mb-12 leading-tight">
+                        Não faço logo. <br/>
+<span class="italic">Faço design que sustenta negócios.</span>
+</h2>
+<div class="space-y-8 text-on-surface/80 max-w-2xl font-body font-light text-lg leading-relaxed tracking-wide">
+<p>Com mais de 15 anos de atuação no mercado de varejo de luxo e estratégia corporativa, Mariana Queiroz fundou a ¡HOLA! Design com uma premissa clara: a estética sem propósito é apenas ruído decorativo.</p>
+<p>Sua trajetória atravessa o desenvolvimento de identidades que não apenas ocupam espaço, mas que dominam categorias. O foco não está no "agora", mas na longevidade das marcas em um ecossistema de consumo cada vez mais volátil.</p>
+</div>
+</div>
+<div class="md:col-span-5 pt-20">
+<div class="relative aspect-[3/4] bg-surface-container overflow-hidden group">
+<img alt="Studio Atmosphere" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Minimalist architectural office space with dark purple tones, sharp shadows, and luxury furniture, moody cinematic atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcVezfw7tBsOhPJox8DAE52nOhvF9xmyx8g1zvlHorXrMo-JVbgVDkJrl-7azXO7qXquyc5ndhJPQ9uOsTua24ealdtFq2Xc0SmBePa-UZ_yfrFUEodZaDCG4xGSOWFDYXMpjeYD87ALR54Puaj7X-Miie2hLrNtqOrKrCt1bZVFo0BySsOhx-Z-a7TEFceRug04duPv30rfFQRmGkyvr0Pasios3_fkTD5gS9Mev5Tdkru9PhD-eBE0ESeQgN2WIrRgrq_HeTsH0"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quote Section -->
+<section class="px-12 py-32 bg-primary-container text-center flex items-center justify-center min-h-[614px] relative">
+<span class="absolute top-20 left-20 font-headline text-[20rem] text-white opacity-[0.03] select-none">“</span>
+<blockquote class="max-w-4xl relative z-10">
+<p class="font-headline text-5xl md:text-8xl italic text-white leading-tight">
+                    "O design só tem valor quando está conectado à estratégia."
+                </p>
+</blockquote>
+<span class="absolute bottom-10 right-20 font-headline text-[20rem] text-white opacity-[0.03] select-none">”</span>
+</section>
+<!-- Timeline Section -->
+<section class="py-40 bg-surface overflow-hidden">
+<div class="px-12 mb-20 flex justify-between items-end">
+<div>
+<span class="font-label text-xs tracking-widest text-primary uppercase">Trajectory</span>
+<h3 class="font-headline text-5xl text-white mt-4">Uma Década de Impacto</h3>
+</div>
+<div class="w-1/3 h-px bg-outline-variant/30 hidden md:block"></div>
+</div>
+<div class="flex overflow-x-auto custom-scrollbar pb-12 px-12 gap-24 items-start snap-x snap-mandatory">
+<!-- Timeline items -->
+<div class="min-w-[300px] snap-start border-l border-outline-variant/20 pl-8 py-4">
+<span class="font-headline text-4xl text-white italic">2017</span>
+<h4 class="font-label text-xs tracking-widest uppercase mt-4 mb-2 text-primary">Foundation</h4>
+<p class="text-on-surface/60 font-light text-sm">Criação da ¡HOLA! Design focada em varejo boutique.</p>
+</div>
+<div class="min-w-[300px] snap-start border-l border-outline-variant/20 pl-8 py-4">
+<span class="font-headline text-4xl text-white italic">2019</span>
+<h4 class="font-label text-xs tracking-widest uppercase mt-4 mb-2 text-primary">Expansion</h4>
+<p class="text-on-surface/60 font-light text-sm">Primeiros projetos internacionais e foco em branding estratégico.</p>
+</div>
+<div class="min-w-[300px] snap-start border-l border-primary/40 pl-8 py-4">
+<span class="font-headline text-4xl text-white italic">2021</span>
+<h4 class="font-label text-xs tracking-widest uppercase mt-4 mb-2 text-primary">Methodology</h4>
+<p class="text-on-surface/60 font-light text-sm">Consolidação do método "Noir Curator" de design institucional.</p>
+</div>
+<div class="min-w-[300px] snap-start border-l border-outline-variant/20 pl-8 py-4">
+<span class="font-headline text-4xl text-white italic">2023</span>
+<h4 class="font-label text-xs tracking-widest uppercase mt-4 mb-2 text-primary">Legacy</h4>
+<p class="text-on-surface/60 font-light text-sm">Rebrand total da agência e foco exclusivo em marcas de alto valor.</p>
+</div>
+<div class="min-w-[300px] snap-start border-l border-white/20 pl-8 py-4 opacity-40">
+<span class="font-headline text-4xl text-white italic">2026</span>
+<h4 class="font-label text-xs tracking-widest uppercase mt-4 mb-2 text-primary">Future</h4>
+<p class="text-on-surface/60 font-light text-sm">Digital integration and cultural curation excellence.</p>
+</div>
+</div>
+</section>
+<!-- Values Section -->
+<section class="px-12 py-40 bg-surface-container-lowest border-t border-white/5">
+<div class="flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
+<div class="font-label text-2xl md:text-4xl tracking-[0.5em] text-white/90 flex flex-col md:flex-row gap-12 md:gap-24 uppercase">
+<span class="hover:text-primary transition-colors duration-500">Longevidade</span>
+<span class="text-primary/30 hidden md:inline">·</span>
+<span class="hover:text-primary transition-colors duration-500">Estratégia</span>
+<span class="text-primary/30 hidden md:inline">·</span>
+<span class="hover:text-primary transition-colors duration-500">Parceria</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-12 pt-40 pb-12 flex flex-col items-center bg-[#1d1233] text-white relative overflow-hidden">
+<div class="text-[10rem] font-headline italic text-white opacity-5 absolute bottom-0 left-0 pointer-events-none select-none">¡HOLA!</div>
+<div class="z-10 w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-20 items-end mb-20">
+<div class="space-y-6">
+<p class="font-label text-xs tracking-widest uppercase opacity-40">Get in touch</p>
+<a class="font-headline text-3xl italic block hover:opacity-70 transition-opacity" href="mailto:hello@holadesign.com">hello@holadesign.com</a>
+</div>
+<div class="flex flex-col items-center gap-8">
+<div class="flex gap-10">
+<a class="font-body text-sm tracking-wide text-white/50 hover:text-white transition-all duration-500" href="#">Instagram</a>
+<a class="font-body text-sm tracking-wide text-white/50 hover:text-white transition-all duration-500" href="#">LinkedIn</a>
+<a class="font-body text-sm tracking-wide text-white/50 hover:text-white transition-all duration-500" href="#">Behance</a>
+</div>
+</div>
+<div class="text-right">
+<p class="font-body text-sm tracking-wide text-white/50">Curitiba, Brasil<br/>Worldwide Execution</p>
+</div>
+</div>
+<div class="w-full h-px bg-white/10 mb-8"></div>
+<div class="flex flex-col md:flex-row justify-between w-full opacity-40 text-[10px] tracking-[0.3em] uppercase">
+<span>© 2024 ¡HOLA! Design. All rights reserved.</span>
+<span>Based in Curitiba — Serving the World</span>
+</div>
+<div class="font-headline italic text-[12rem] opacity-5 pointer-events-none select-none mt-20">Design</div>
+</footer>
+<!-- FAB (Suppressed for About Page per instructions) -->
+</body></html>

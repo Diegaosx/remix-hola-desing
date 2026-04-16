@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&amp;family=Montserrat:wght@200;300;400&amp;family=Manrope:wght@300;400;600;800&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#503c74",
+                    "on-surface": "#e2e2e2",
+                    "inverse-on-surface": "#303030",
+                    "secondary-fixed": "#eaddff",
+                    "on-secondary-container": "#c2b0e5",
+                    "tertiary-fixed-dim": "#d4bbfd",
+                    "surface-container-highest": "#353535",
+                    "tertiary": "#d4bbfd",
+                    "inverse-primary": "#65587d",
+                    "surface": "#131313",
+                    "surface-bright": "#393939",
+                    "on-secondary-fixed": "#21133e",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-fixed": "#ebdcff",
+                    "on-tertiary": "#39255c",
+                    "secondary-fixed-dim": "#d0bef3",
+                    "on-primary-container": "#897ba2",
+                    "surface-container": "#1f1f1f",
+                    "surface-container-high": "#2a2a2a",
+                    "inverse-surface": "#e2e2e2",
+                    "surface-dim": "#131313",
+                    "outline": "#948f98",
+                    "primary-fixed-dim": "#cfbfea",
+                    "outline-variant": "#49454d",
+                    "surface-container-low": "#1b1b1b",
+                    "on-tertiary-container": "#8d77b3",
+                    "on-secondary-fixed-variant": "#4d3f6c",
+                    "primary-fixed": "#eaddff",
+                    "surface-tint": "#cfbfea",
+                    "secondary-container": "#50416e",
+                    "on-error": "#690005",
+                    "on-secondary": "#372954",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-tertiary-fixed": "#240e46",
+                    "on-background": "#e2e2e2",
+                    "error-container": "#93000a",
+                    "on-surface-variant": "#cbc4ce",
+                    "on-primary-fixed": "#201536",
+                    "surface-variant": "#353535",
+                    "on-primary-fixed-variant": "#4d4164",
+                    "secondary": "#d0bef3",
+                    "tertiary-container": "#200a43",
+                    "background": "#131313",
+                    "error": "#ffb4ab",
+                    "primary": "#cfbfea",
+                    "primary-container": "#1d1233",
+                    "on-primary": "#362a4d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Montserrat", "sans-serif"],
+                    "label": ["Manrope", "sans-serif"],
+                    "serif": ["Baskervville", "serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>body {
+    background-color: #131313;
+    color: #e2e2e2;
+    cursor: crosshair
+    }
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuArDKqCs7iaHEAcx7ZtDGzH5Egew-uqt0ZS8jv8gKtDOdyTPDDxUpVwF8HFYZAFbOeSikbKnGOeiUeKwDTt5S-bpHip8aFo-FeHSpdHo0pHuSbpfDzvtSEF9Jd6WBE1yRiMUeRxl9XFSoED_1LwX7wcHivk8HMitTNwFR6FVgvAQj_oBcyZ0mWLmyAAoRkegK6aKnAVxWvJSx3KhcTglIPb98GRHDuVHhBR-VuXqkvlbh-vTafX7GCAkUUV7AzNrce5SD6b2BM86GM);
+    opacity: 0.03
+    }
+.baskerville {
+    font-family: "Baskervville", serif
+    }
+.manrope-label {
+    font-family: "Manrope", sans-serif;
+    text-transform: none
+    }
+.montserrat-body {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 200
+    }
+.asymmetric-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr)
+    }
+/* Prohibit borders per design system */
+.no-border {
+    border: none !important
+    }</style>
+</head>
+<body class="bg-background selection:bg-primary selection:text-primary-container">
+<div class="grain-overlay"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 flex justify-between items-center w-full px-12 py-8 max-w-full bg-transparent backdrop-blur-xl z-50">
+<div class="text-3xl font-serif italic text-white leading-none">¡H!</div>
+<div class="hidden md:flex items-center gap-12">
+<a class="manrope-label text-xs tracking-widest text-white/60 hover:text-white transition-opacity duration-300" href="#">Portfolio</a>
+<a class="manrope-label text-xs tracking-widest text-white/60 hover:text-white transition-opacity duration-300" href="#">Strategy</a>
+<a class="manrope-label text-xs tracking-widest text-white/60 hover:text-white transition-opacity duration-300" href="#">Culture</a>
+</div>
+<button class="bg-white text-primary-container px-8 py-3 manrope-label text-xs tracking-widest font-bold hover:scale-95 transition-transform">
+            Diagnóstico
+        </button>
+</nav>
+<main class="pt-32 pb-24">
+<!-- Editorial Header & Filter -->
+<section class="px-12 mb-20 asymmetric-grid gap-8">
+<div class="col-span-12 md:col-span-8">
+<h1 class="baskerville italic text-[4rem] md:text-[7rem] leading-[0.9] text-white">Pensamiento Crítico &amp; Curaduría Visual.</h1>
+</div>
+<div class="col-span-12 md:col-start-9 md:col-span-4 flex flex-col justify-end pb-4">
+<div class="flex gap-6 manrope-label text-[10px] tracking-[0.2em] text-white/40">
+<button class="hover:text-white transition-colors border-b border-white/40 pb-1 text-white">TODOS</button>
+<button class="hover:text-white transition-colors">ESTRATEGIA</button>
+<button class="hover:text-white transition-colors">DESIGN</button>
+<button class="hover:text-white transition-colors">MERCADO</button>
+</div>
+</div>
+</section>
+<!-- Featured Post -->
+<section class="px-12 mb-32">
+<div class="relative group cursor-pointer overflow-hidden bg-surface-container">
+<div class="asymmetric-grid">
+<div class="col-span-12 md:col-span-7 h-[716px] relative overflow-hidden">
+<img alt="Featured Article" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" data-alt="Monochromatic dark violet architectural detail with dramatic sharp shadows and high contrast editorial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCziABwRsugHzye5YzAj9jcNpux5Vz6ZL5QzoDHEMlIYXabNtQ2WxjxpIc65WYm6k182X7UGXXI450vKdR0aLeatqVLp1FIXBTtf70awoYchjTbC-U7Rn2UJ2AJqTzn0KrxTcibf7bc52n-Kh9mSKVymXiMrKebCdBbxS1Ue5LWKmxPqq86wrHOldxRt4kNqq06gHTD3qr6Qcxjmb-y76HkbHTx3Tzn6ZMmud3_GTmTgUhNn6Yg7Ez5TSWsmfUQutKPUYZievnjSUc"/>
+</div>
+<div class="col-span-12 md:col-span-5 p-12 flex flex-col justify-center bg-primary-container">
+<span class="manrope-label text-[10px] tracking-[0.3em] text-on-primary-container mb-6 italic">ESTRATEGIA • 12 MIN READ</span>
+<h2 class="baskerville text-4xl md:text-6xl text-white mb-8 leading-tight italic">El silencio como la máxima expresión de lujo digital.</h2>
+<p class="montserrat-body text-lg text-white/60 leading-relaxed mb-10 max-w-md">Exploramos cómo las marcas de alta gama están utilizando el vacío y la ausencia de ruido para reconstruir su autoridad en la era de la sobreinformación.</p>
+<div class="w-12 h-[1px] bg-white/20 group-hover:w-24 transition-all duration-500"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondary Grid -->
+<section class="px-12 mb-32">
+<div class="asymmetric-grid gap-16">
+<!-- Card 1 -->
+<div class="col-span-12 md:col-span-4 group">
+<div class="aspect-[4/5] bg-surface-container-high mb-8 overflow-hidden">
+<img alt="Design Post" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" data-alt="Minimalist design studio with a single designer lamp casting soft purple light on a dark concrete wall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALaiokUdl-ur4a7nom6hHmReWRbuYAJQf7lDKT24TEhq4tNsS-i16pDkvRvVQ6-xefWsEYMMMC_lN_vCUrzeok9NhlGp_ESPu8WEW5QRzYoQTGGJEkNzQYV6lfijM6z5ACs-1o1IsT78qzv1nUagk8KO79XI_Pe5aRz-aDWn--yC7aJ6_blhzFuprtBaHI_1p_NIzVBMAlGJ7hJYFgs4_Xmwm9g50aCrCViixaz8PLueJ97c_IEGcwgNkNEvLO3zRcjftJlS111d4"/>
+</div>
+<span class="manrope-label text-[10px] tracking-[0.2em] text-white/30 mb-4 block">DESIGN</span>
+<h3 class="baskerville text-3xl text-white mb-4 italic">Antropología del píxel: La forma sigue al ritual.</h3>
+<div class="w-full h-[1px] bg-white/5 mt-6"></div>
+</div>
+<!-- Card 2 (Offset) -->
+<div class="col-span-12 md:col-span-4 md:mt-24 group">
+<div class="aspect-[4/5] bg-surface-container-high mb-8 overflow-hidden">
+<img alt="Market Post" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" data-alt="Abstract deep purple silk fabric flowing in the dark with subtle iridescent highlights and sharp folds" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0hVk7FXsKYScpjxJBNbgyj3SmqIKQonzs27Zt7E3eZCmcvVGx0691TLiDAau_zVUSKo_McDIS-sfrMjw-X_24BXtkuHfNr2L41VAe5rW5Pz75eIdJpIEIZLHkmLNL9ZRQtXnikltXaAKjvXiXoCLMKHRvbN2i_B8Qpu0vGX90mj2H0ngXm5NhwdX1BG7jNYGNHMTDwJFfYwOrhDo-pWI_aNJfFAz8sALbMl-CAhJGvOmGGLDlMMrzsK4wfpEpMpqgGNB4ZREkrWI"/>
+</div>
+<span class="manrope-label text-[10px] tracking-[0.2em] text-white/30 mb-4 block">MERCADO</span>
+<h3 class="baskerville text-3xl text-white mb-4 italic">Mercados Fluidos: Por qué la lealtad es un mito.</h3>
+<div class="w-full h-[1px] bg-white/5 mt-6"></div>
+</div>
+<!-- Card 3 -->
+<div class="col-span-12 md:col-span-4 group">
+<div class="aspect-[4/5] bg-surface-container-high mb-8 overflow-hidden">
+<img alt="Culture Post" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" data-alt="Dynamic abstract 3D sculpture in matte black and deep violet with dramatic top lighting in a void space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnHcWj62HHkS99RI_PfhsCdHyY74upzeFncb5lDYsDDQ_3Ucan26nGvXl-cSFJaT8Q0wopokkBpMhjYHsbl25XsYMflWd1PwVYgAK-gzGnKke3bqEDCzaGH4MuU6WOAnDtSV33AnzelDX9VHyfmnv4SYrPYv8AQQ-O_N8BX5Hwz1BW4id6iBrMU_EasvPN-d0HMyBTei_L6rqoyAdq3teGzHyMN30cg_Gn22lNA6DdFt_OagA2UL-p5XojYriv5PtCjv0JYRoNmoY"/>
+</div>
+<span class="manrope-label text-[10px] tracking-[0.2em] text-white/30 mb-4 block">CULTURA</span>
+<h3 class="baskerville text-3xl text-white mb-4 italic">Obsidiana Digital: La estética del brutalismo orgánico.</h3>
+<div class="w-full h-[1px] bg-white/5 mt-6"></div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Editorial CTA -->
+<section class="px-12 mb-32">
+<div class="bg-secondary-container p-20 flex flex-col items-center text-center">
+<span class="manrope-label text-xs tracking-[0.4em] text-on-secondary-container mb-8">THE CURATED LIST</span>
+<h2 class="baskerville text-5xl md:text-7xl text-white mb-12 italic max-w-4xl">Recibe nuestra curaduría quincenal sobre estrategia y estética.</h2>
+<div class="w-full max-w-xl flex flex-col md:flex-row gap-4 border-b border-white/20 pb-4">
+<input class="bg-transparent border-none text-white manrope-label text-xs tracking-widest focus:ring-0 w-full placeholder:text-white/20" placeholder="TU CORREO ELECTRÓNICO" type="email"/>
+<button class="manrope-label text-xs tracking-widest text-white hover:opacity-50 transition-opacity font-bold">SUSCRIBIRSE</button>
+</div>
+</div>
+</section>
+<!-- List Section (Minimal) -->
+<section class="px-12 mb-40">
+<div class="asymmetric-grid border-t border-white/5 pt-20">
+<div class="col-span-12 md:col-span-3">
+<h4 class="manrope-label text-[10px] tracking-[0.3em] text-white/30 uppercase">ARCHIVO 2024</h4>
+</div>
+<div class="col-span-12 md:col-span-9 space-y-16">
+<article class="flex flex-col md:flex-row justify-between items-start md:items-center group cursor-pointer">
+<div>
+<span class="manrope-label text-[10px] text-primary mb-2 block">MAR 24</span>
+<h3 class="baskerville text-4xl text-white group-hover:italic transition-all">La muerte del minimalismo genérico.</h3>
+</div>
+<span class="material-symbols-outlined text-white/20 group-hover:text-white group-hover:translate-x-2 transition-all">north_east</span>
+</article>
+<div class="w-full h-[1px] bg-white/5"></div>
+<article class="flex flex-col md:flex-row justify-between items-start md:items-center group cursor-pointer">
+<div>
+<span class="manrope-label text-[10px] text-primary mb-2 block">FEB 12</span>
+<h3 class="baskerville text-4xl text-white group-hover:italic transition-all">Nuevos algoritmos, viejas emociones.</h3>
+</div>
+<span class="material-symbols-outlined text-white/20 group-hover:text-white group-hover:translate-x-2 transition-all">north_east</span>
+</article>
+<div class="w-full h-[1px] bg-white/5"></div>
+<article class="flex flex-col md:flex-row justify-between items-start md:items-center group cursor-pointer">
+<div>
+<span class="manrope-label text-[10px] text-primary mb-2 block">JAN 28</span>
+<h3 class="baskerville text-4xl text-white group-hover:italic transition-all">Curaduría: El último refugio humano.</h3>
+</div>
+<span class="material-symbols-outlined text-white/20 group-hover:text-white group-hover:translate-x-2 transition-all">north_east</span>
+</article>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-12 pt-40 pb-12 flex flex-col items-center bg-[#1d1233] relative overflow-hidden">
+<div class="text-[10rem] font-serif italic text-white opacity-5 absolute bottom-0 left-0 pointer-events-none select-none">¡HOLA!</div>
+<div class="flex flex-col md:flex-row gap-12 mb-24 z-10">
+<a class="manrope-label text-xs tracking-widest text-white/50 hover:text-white transition-all duration-500" href="#">Instagram</a>
+<a class="manrope-label text-xs tracking-widest text-white/50 hover:text-white transition-all duration-500" href="#">LinkedIn</a>
+<a class="manrope-label text-xs tracking-widest text-white/50 hover:text-white transition-all duration-500" href="#">Behance</a>
+<a class="manrope-label text-xs tracking-widest text-white/50 hover:text-white transition-all duration-500 underline underline-offset-4" href="#">Contact</a>
+</div>
+<p class="montserrat-body text-[10px] tracking-[0.2em] text-white/30 z-10">© 2024 ¡HOLA! Design. All rights reserved.</p>
+</footer>
+</body></html>
