@@ -11,8 +11,6 @@
  * migrations versionadas (veja README).
  */
 
-import 'dotenv/config';
-
 async function main() {
   const hasDb = Boolean(process.env.DATABASE_URL ?? process.env.DATABASE_URI);
   if (!hasDb) {

@@ -8,7 +8,6 @@
  * Em produção, rode uma única vez após o primeiro deploy.
  */
 
-import 'dotenv/config';
 import { getPayload } from 'payload';
 import config from '../src/payload.config';
 
