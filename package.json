@@ -2,6 +2,7 @@
   "name": "hola-design",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "¡HOLA! Design — editorial strategy studio website (Next.js 15 + TypeScript)",
   "scripts": {
     "dev": "next dev",
