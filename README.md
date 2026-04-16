@@ -1,75 +1,177 @@
-# ¡HOLA! Design — website
+# ¡HOLA! Design — site + painel
 
-Site editorial do estúdio ¡HOLA! Design, construído em **Next.js 15 (App Router) + TypeScript strict**, seguindo o design system "Noir Curator" documentado em `stitch_remix_of_hola_design_website/velvet_strategy/DESIGN.md`.
+Site editorial e **painel de gestão completo** do estúdio ¡HOLA! Design, em **Next.js 15 (App Router) + TypeScript strict** com **Payload CMS v3 embutido**, seguindo o design system "Noir Curator" (`stitch_remix_of_hola_design_website/velvet_strategy/DESIGN.md`).
 
 ## Stack
 
-- **Next.js 15** (App Router, React 19, Server Components)
-- **TypeScript strict** (`strict`, `noUncheckedIndexedAccess`)
-- **Tailwind CSS v3** com tokens editoriais (paleta roxa "Noir", `radius: 0`, tipografia Newsreader/Montserrat/Manrope via `next/font`)
-- **Zod** para validação, **MDX** (via `next-mdx-remote/rsc` + `gray-matter`) para posts do Journal
-- **Server Actions** para formulários (contato, newsletter), com honeypot e rate limit in-memory
-- **SEO** completo: `metadata` por rota, `sitemap.xml`, `robots.txt`, JSON-LD (Organization/WebSite/Article/BreadcrumbList), OG tags
-- **Segurança**: CSP, HSTS, X-Frame-Options `DENY`, Permissions-Policy, Referrer-Policy, `poweredByHeader` off, rate limit em Server Actions, honeypot
+- **Next.js 15** (App Router, React 19, Server Components) + **TypeScript strict**
+- **Payload CMS v3** embutido em `/admin` no mesmo app
+- **Postgres** (Railway) via `@payloadcms/db-postgres`
+- **Cloudflare R2** (S3-compatible) via `@payloadcms/storage-s3` para uploads
+- **SMTP genérico** via `nodemailer` + `@payloadcms/email-nodemailer`
+- **Tailwind CSS** com tokens editoriais + `next/font` (Newsreader, Montserrat, Manrope)
+- **Zod** para validação, **MDX** (`next-mdx-remote`) para posts legados
+- Server Actions com honeypot + rate limit in-memory
+
+## Variáveis de ambiente
+
+Copie `.env.example` → `.env` e preencha:
+
+```bash
+# Site
+NEXT_PUBLIC_SITE_URL=https://holadesign.com.br
+
+# Payload + banco
+PAYLOAD_SECRET=          # openssl rand -base64 48
+DATABASE_URI=            # postgres://... (Railway)
+
+# SMTP (envio de e-mails do formulário)
+SMTP_HOST=
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=
+SMTP_PASS=
+FROM_EMAIL=no-reply@holadesign.com.br
+FROM_NAME=¡HOLA! Design
+CONTACT_TO_EMAIL=hola@holadesign.com.br
+
+# Cloudflare R2 (upload de mídia)
+R2_ACCOUNT_ID=
+R2_ACCESS_KEY_ID=
+R2_SECRET_ACCESS_KEY=
+R2_BUCKET=
+R2_PUBLIC_URL=           # https://cdn.holadesign.com.br  ou  https://pub-<hash>.r2.dev
+```
+
+Nenhum segredo é lido fora de `process.env`. Em dev, se `DATABASE_URI` estiver
+ausente, o frontend continua funcionando com o conteúdo em `src/content/*.ts`.
 
 ## Scripts
 
 ```bash
-pnpm dev        # desenvolvimento local em http://localhost:3000
-pnpm build      # build de produção (SSG)
-pnpm start      # serve o build
-pnpm lint       # ESLint
-pnpm typecheck  # tsc --noEmit
+pnpm dev                  # desenvolvimento local
+pnpm build                # build de produção
+pnpm start                # servir o build
+
+pnpm lint
+pnpm typecheck
+
+pnpm generate:types       # gera src/payload-types.ts a partir da config
+pnpm generate:importmap   # regenera importMap.js para componentes custom
+pnpm migrate              # roda migrations do Payload no Postgres
+pnpm seed                 # popula globals + collections base a partir de src/content/*
 ```
 
-## Estrutura
+## Painel (/admin)
+
+- Acessível em `https://<dominio>/admin`, autenticação nativa Payload
+  (cookie sessão, `SameSite=Lax`, `Secure` em produção).
+- Primeiro acesso: cadastre o admin na tela que o Payload exibe automaticamente
+  na primeira conexão com o banco.
+- Grupos do menu:
+  - **Conteúdo** — Pages (textos das páginas), Projects, Posts, FAQs,
+    Packages, Process Steps, Timeline Entries, Media
+  - **Inbox** — Contact Messages, Newsletter Subscribers
+  - **Configurações** — Site Settings, Navigation, Footer
+  - **Administração** — Users (RBAC `admin` / `editor`)
+- `<meta name="robots">` retorna `noindex, nofollow` em todas as rotas `/admin/*`
+  (configurado em `next.config.ts` + `src/middleware.ts`).
+- Access control por coleção/global; `ContactMessages` e
+  `NewsletterSubscribers` só são legíveis por staff autenticado.
+
+## Segurança — nenhuma rota pública sensível
+
+- Middleware (`src/middleware.ts`):
+  - Força HTTPS em produção (defesa em profundidade).
+  - Bloqueia métodos não permitidos em `/api/contact`, `/api/newsletter`.
+  - Aplica `X-Robots-Tag: noindex, nofollow` em rotas admin.
+- `next.config.ts`:
+  - CSP restritiva para rotas públicas, relaxada no admin (Payload usa inline styles próprios).
+  - HSTS 2 anos com preload, `X-Frame-Options: DENY`, `nosniff`,
+    `Referrer-Policy: strict-origin-when-cross-origin`,
+    `Permissions-Policy: camera=(), microphone=(), geolocation=()`.
+  - `poweredByHeader: false`.
+- Autenticação:
+  - Payload gerencia todas as rotas `/api/*` com seus próprios access
+    controls; qualquer collection/global com `read: authenticated` não pode
+    ser lida anonimamente.
+  - Users lock após 5 tentativas (10 min), `tokenExpiration: 8h`.
+- Server Actions:
+  - Zod + honeypot + rate limit por IP em `contact` e `newsletter`.
+  - Persistência via `payload.create` com `_req` autenticado server-side;
+    não expõe a coleção à escrita anônima do admin, apenas o fluxo público
+    controlado.
+
+## Frontend público
+
+- `/`, `/marcas`, `/como-trabalhamos`, `/sobre`, `/blog`, `/blog/[slug]`, `/contato`, `/404`.
+- Nav e Footer **unificados** em componentes compartilhados
+  (`src/components/layout/site-nav.tsx`, `site-footer.tsx`) com variantes
+  de tom por página (`primary | surface | surface-low | transparent`).
+- SEO completo: metadata API por rota, sitemap, robots, JSON-LD
+  (Organization, WebSite, Article, BreadcrumbList).
+
+## Deploy (Railway)
+
+1. Crie um Postgres no Railway, copie o `DATABASE_URI`.
+2. Defina todas as envs no Railway (veja bloco acima).
+3. Build command: `pnpm build` · Start command: `pnpm start`.
+4. Após o primeiro deploy, rode `pnpm migrate` (migrations Payload) e
+   opcionalmente `pnpm seed` via Railway CLI ou Railway Shell.
+5. Acesse `/admin` e crie o primeiro admin.
+
+## Imagens do site
+
+Agora as imagens são gerenciadas pelo próprio painel (upload em Media, que
+vai para o R2). Para migrar as 14 imagens dos HTMLs originais, use a
+extensão Claude do navegador com o prompt em
+`public/images/PROMPT_PARA_EXTENSAO.md` (baixa local) ou envie diretamente
+pelo admin em `/admin/collections/media`.
+
+O carimbo `https://holadesign.com.br/wp-content/uploads/2021/07/carimbo-768x790.png`
+deve ser salvo em `public/brand/logo.png` (o WordPress bloqueia downloads
+via curl — ver `public/brand/README.md`). Enquanto isso, o favicon e o
+logo usam o monograma estilizado `¡H!` (`src/app/icon.svg`).
+
+## Estrutura de pastas
 
 ```
 src/
-  app/              # rotas (App Router) + sitemap/robots
-    _actions/       # Server Actions (contact, newsletter)
-    blog/[slug]/    # post dinâmico em MDX
+  app/
+    (payload)/          # admin Payload + API REST
+      admin/[[...segments]]/
+      api/[...slug]/
+    _actions/           # contact, newsletter (com Payload + SMTP)
+    blog/[slug]/        # posts MDX (legado) → migrar para Payload Posts
   components/
-    layout/         # SiteNav, SiteFooter, GrainOverlay, SkipLink — unificados
-    marcas/         # PortfolioGrid com filtros
-    blog/           # NewsletterForm
-    contato/        # ContactForm
-  content/          # conteúdo tipado (site, projects, timeline, packages, faqs, home, process)
-    posts/          # MDX (7 posts iniciais)
-  lib/              # seo.ts, validators.ts, content.ts, rate-limit.ts
-  styles/           # globals.css (tokens, grain, keyframes)
+    layout/ site-nav, site-footer, grain-overlay, skip-link
+    marcas/ portfolio-grid
+    blog/   newsletter-form
+    contato/ contact-form
+  content/              # fallback quando DATABASE_URI ausente (dev)
+  lib/                  # seo, validators, rate-limit, content loader
+  middleware.ts         # segurança em camadas
+  payload.config.ts     # config central Payload
+  payload/
+    access/             # authenticated, anyone
+    collections/        # Users, Media, Projects, Posts, Faqs, Packages, ProcessSteps, TimelineEntries, ContactMessages, NewsletterSubscribers
+    globals/            # SiteSettings, Navigation, Footer, Pages
+  styles/globals.css
 public/
-  images/           # assets locais (ver public/images/README.md)
+  brand/logo.png        # subir manualmente o carimbo
+  images/README.md      # manifesto das imagens públicas do site
+scripts/
+  seed.ts
 ```
 
-## Nav e Footer unificados
+## Roadmap
 
-Os HTMLs exportados do Stitch mostravam navegação e rodapé com a mesma estrutura, variando apenas a cor de fundo conforme a página. Foram consolidados em dois componentes com props de tom:
-
-- `<SiteNav active="home|portfolio|strategy|culture|journal|contato" tone="primary|surface|surface-low|transparent" />`
-- `<SiteFooter tone="primary|surface" accentWord="¡HOLA!|Curatorship|Strategy|Design|Curadoria" />`
-
-Todo o conteúdo (social, e-mail, endereço, CTA) vem de `src/content/site.ts`.
-
-## Imagens
-
-As imagens dos HTMLs exportados (hosts `lh3.googleusercontent.com`) devem ser subidas em `public/images/**` seguindo o manifesto em [`public/images/README.md`](public/images/README.md). Enquanto os arquivos não existem, o layout e a tipografia permanecem intactos (os containers têm `bg-surface-container-high`).
-
-## Futuro: painel de gestão
-
-A estrutura de conteúdo já está em arquivos tipados (`src/content/*.ts` + MDX com frontmatter). A migração para um CMS embutido (ex.: Payload CMS no mesmo projeto Next.js) é direta:
-
-1. Mover os tipos (`Project`, `Post`, `Package`, `Faq`, `TimelineEntry`, `ProcessStep`) para coleções Payload.
-2. Substituir `src/lib/content.ts` por consultas Payload (mantendo a mesma assinatura).
-3. Adicionar `app/admin/[[...payload]]/page.tsx` para montar o painel autenticado.
-
-Auth, rate limit distribuído (Upstash Redis) e integração de e-mail (Resend) já têm pontos de extensão em `src/lib/`.
-
-## Acessibilidade
-
-- `lang="pt-BR"`, skip-link, foco visível via `.focus-ring`, `aria-current="page"` na nav ativa.
-- `prefers-reduced-motion` desativa marquee/transições.
-- Alts descritivos em todas as `<Image>`.
+- Integrar o frontend para ler dos globals/collections Payload (hoje os
+  Server Components ainda usam fallback de `src/content/*`; a função
+  `getPayloadSafe` em `src/getPayload.ts` já está pronta).
+- Editor de blocos para a collection `Pages` (blocks de hero/CTA/grade).
+- Rate limit distribuído via Upstash Redis.
+- Revalidação on-demand por hooks `afterChange` nas collections.
 
 ## Licença
 

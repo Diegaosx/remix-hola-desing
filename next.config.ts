@@ -1,6 +1,34 @@
 import type { NextConfig } from 'next';
+import { withPayload } from '@payloadcms/next/withPayload';
 
 const isDev = process.env.NODE_ENV !== 'production';
+
+const r2Host = (() => {
+  try {
+    return process.env.R2_PUBLIC_URL ? new URL(process.env.R2_PUBLIC_URL).host : null;
+  } catch {
+    return null;
+  }
+})();
+
+const imgSrc = [
+  "'self'",
+  'data:',
+  'blob:',
+  r2Host ? `https://${r2Host}` : null,
+]
+  .filter(Boolean)
+  .join(' ');
+
+const connectSrc = [
+  "'self'",
+  isDev ? 'ws:' : null,
+  isDev ? 'http:' : null,
+  isDev ? 'https:' : null,
+  r2Host ? `https://${r2Host}` : null,
+]
+  .filter(Boolean)
+  .join(' ');
 
 const csp = [
   "default-src 'self'",
@@ -8,11 +36,11 @@ const csp = [
   "form-action 'self'",
   "frame-ancestors 'none'",
   "object-src 'none'",
-  "img-src 'self' data: blob:",
+  `img-src ${imgSrc}`,
   "font-src 'self' data:",
   `script-src 'self' ${isDev ? "'unsafe-eval'" : ''} 'unsafe-inline'`,
   "style-src 'self' 'unsafe-inline'",
-  `connect-src 'self' ${isDev ? 'ws: http: https:' : ''}`,
+  `connect-src ${connectSrc}`,
   "manifest-src 'self'",
   'upgrade-insecure-requests',
 ]
@@ -41,16 +69,26 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
-    remotePatterns: [],
+    remotePatterns: r2Host ? [{ protocol: 'https', hostname: r2Host, pathname: '/**' }] : [],
   },
   async headers() {
     return [
       {
-        source: '/:path*',
+        source: '/((?!admin|api).*)',
         headers: securityHeaders,
+      },
+      {
+        // Admin: CSP mais permissiva (o admin Payload usa seus próprios inline styles/scripts).
+        source: '/admin/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+        ],
       },
     ];
   },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig);
