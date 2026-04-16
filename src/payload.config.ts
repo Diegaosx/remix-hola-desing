@@ -1,6 +1,22 @@
 import { buildConfig } from 'payload';
 import path from 'node:path';
+import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
+
+// sharp é opcional (o Payload só usa para gerar variações de imagem). Carregamos
+// via createRequire em vez de `await import()` para manter compatibilidade
+// com CJS (tsx/esbuild em runtime de produção).
+const nodeRequire = createRequire(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let sharpImpl: any;
+try {
+  sharpImpl = nodeRequire('sharp');
+  if (sharpImpl && typeof sharpImpl === 'object' && 'default' in sharpImpl) {
+    sharpImpl = sharpImpl.default;
+  }
+} catch {
+  sharpImpl = undefined;
+}
 
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
@@ -117,8 +133,7 @@ export default buildConfig({
       ]
     : [],
   graphQL: { disable: true },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  sharp: (await import('sharp')).default as any,
+  sharp: sharpImpl,
   cors:
     process.env.NODE_ENV === 'production'
       ? [process.env.NEXT_PUBLIC_SITE_URL ?? 'https://holadesign.com.br']
