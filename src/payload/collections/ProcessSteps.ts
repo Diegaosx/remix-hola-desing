@@ -3,10 +3,12 @@ import { anyone, authenticated } from '../access/authenticated';
 
 export const ProcessSteps: CollectionConfig = {
   slug: 'process-steps',
+  labels: { singular: 'Etapa', plural: 'Etapas do processo' },
   admin: {
     group: 'Conteúdo',
     useAsTitle: 'title',
     defaultColumns: ['number', 'title', 'order'],
+    description: 'Timeline vertical da página /como-trabalhamos.',
   },
   access: {
     read: anyone,
@@ -15,9 +17,9 @@ export const ProcessSteps: CollectionConfig = {
     delete: authenticated,
   },
   fields: [
-    { name: 'number', type: 'text', required: true, admin: { description: 'Ex.: "01", "02"' } },
-    { name: 'title', type: 'text', required: true },
-    { name: 'description', type: 'textarea', required: true },
-    { name: 'order', type: 'number', defaultValue: 100 },
+    { name: 'number', type: 'text', label: 'Número (dois dígitos)', required: true, admin: { placeholder: '01' } },
+    { name: 'title', type: 'text', label: 'Título', required: true },
+    { name: 'description', type: 'textarea', label: 'Descrição', required: true },
+    { name: 'order', type: 'number', label: 'Ordem', defaultValue: 100 },
   ],
 };

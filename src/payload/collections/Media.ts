@@ -3,7 +3,12 @@ import { anyone, authenticated } from '../access/authenticated';
 
 export const Media: CollectionConfig = {
   slug: 'media',
-  admin: { group: 'Conteúdo', defaultColumns: ['filename', 'alt', 'mimeType', 'filesize'] },
+  labels: { singular: 'Arquivo de mídia', plural: 'Mídia' },
+  admin: {
+    group: 'Conteúdo',
+    defaultColumns: ['filename', 'alt', 'mimeType', 'filesize'],
+    description: 'Imagens enviadas para o Cloudflare R2. Referenciadas em projetos, posts, etc.',
+  },
   access: {
     read: anyone,
     create: authenticated,
@@ -21,7 +26,13 @@ export const Media: CollectionConfig = {
     focalPoint: true,
   },
   fields: [
-    { name: 'alt', type: 'text', required: true, label: 'Texto alternativo' },
-    { name: 'caption', type: 'text' },
+    {
+      name: 'alt',
+      type: 'text',
+      required: true,
+      label: 'Texto alternativo (alt)',
+      admin: { description: 'Descreva a imagem para acessibilidade. Obrigatório.' },
+    },
+    { name: 'caption', type: 'text', label: 'Legenda (opcional)' },
   ],
 };

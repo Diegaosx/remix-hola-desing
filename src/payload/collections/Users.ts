@@ -3,10 +3,12 @@ import { authenticated } from '../access/authenticated';
 
 export const Users: CollectionConfig = {
   slug: 'users',
+  labels: { singular: 'Usuário', plural: 'Usuários' },
   admin: {
     defaultColumns: ['name', 'email', 'role'],
     useAsTitle: 'name',
     group: 'Administração',
+    description: 'Membros com acesso ao painel. Admins gerenciam usuários; editores só conteúdo.',
   },
   auth: {
     tokenExpiration: 60 * 60 * 8,
@@ -25,10 +27,11 @@ export const Users: CollectionConfig = {
     delete: authenticated,
   },
   fields: [
-    { name: 'name', type: 'text', required: true },
+    { name: 'name', type: 'text', label: 'Nome completo', required: true },
     {
       name: 'role',
       type: 'select',
+      label: 'Papel',
       required: true,
       defaultValue: 'editor',
       options: [

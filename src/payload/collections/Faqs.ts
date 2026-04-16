@@ -3,10 +3,12 @@ import { anyone, authenticated } from '../access/authenticated';
 
 export const Faqs: CollectionConfig = {
   slug: 'faqs',
+  labels: { singular: 'FAQ', plural: 'FAQs' },
   admin: {
     group: 'Conteúdo',
     useAsTitle: 'question',
     defaultColumns: ['question', 'order', 'updatedAt'],
+    description: 'Perguntas frequentes exibidas em /contato.',
   },
   access: {
     read: anyone,
@@ -15,8 +17,8 @@ export const Faqs: CollectionConfig = {
     delete: authenticated,
   },
   fields: [
-    { name: 'question', type: 'text', required: true },
-    { name: 'answer', type: 'textarea', required: true },
-    { name: 'order', type: 'number', defaultValue: 100 },
+    { name: 'question', type: 'text', label: 'Pergunta', required: true },
+    { name: 'answer', type: 'textarea', label: 'Resposta', required: true },
+    { name: 'order', type: 'number', label: 'Ordem', defaultValue: 100, admin: { description: 'Menor = aparece antes.' } },
   ],
 };

@@ -66,8 +66,19 @@ export default buildConfig({
       title: '¡HOLA! Design — Painel',
       titleSuffix: ' · ¡HOLA!',
       description: 'Painel de gestão do site editorial ¡HOLA! Design.',
+      icons: [{ url: '/icon.svg', rel: 'icon', type: 'image/svg+xml' }],
     },
     components: {},
+    theme: 'dark',
+    avatar: 'default',
+    dateFormat: 'dd/MM/yyyy',
+    livePreview: {
+      breakpoints: [
+        { label: 'Mobile', name: 'mobile', width: 375, height: 667 },
+        { label: 'Tablet', name: 'tablet', width: 768, height: 1024 },
+        { label: 'Desktop', name: 'desktop', width: 1440, height: 900 },
+      ],
+    },
   },
   collections: [
     Users,
