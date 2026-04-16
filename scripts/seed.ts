@@ -19,8 +19,8 @@ import { processSteps } from '../src/content/process';
 import { timeline } from '../src/content/timeline';
 
 async function main() {
-  if (!process.env.DATABASE_URI) {
-    console.error('DATABASE_URI não definida. Abortando seed.');
+  if (!process.env.DATABASE_URL && !process.env.DATABASE_URI) {
+    console.error('DATABASE_URL/DATABASE_URI não definida. Abortando seed.');
     process.exit(1);
   }
 

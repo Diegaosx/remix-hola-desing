@@ -10,7 +10,7 @@ let cached: Awaited<ReturnType<typeof getPayloadBase>> | null = null;
  * de content files (modo dev/local sem infra).
  */
 export async function getPayloadSafe() {
-  if (!process.env.DATABASE_URI) return null;
+  if (!process.env.DATABASE_URL && !process.env.DATABASE_URI) return null;
   if (cached) return cached;
   try {
     cached = await getPayloadBase({ config });

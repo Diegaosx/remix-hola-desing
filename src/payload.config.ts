@@ -64,8 +64,15 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET ?? 'dev-only-unsafe-secret-change-me',
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI ?? 'postgres://postgres:postgres@localhost:5432/hola',
+      connectionString:
+        process.env.DATABASE_URL ??
+        process.env.DATABASE_URI ??
+        'postgres://postgres:postgres@localhost:5432/hola',
     },
+    // Sincroniza o schema automaticamente no boot do container.
+    // Para projetos maduros, desligue (PAYLOAD_PUSH=false) e use migrations
+    // versionadas: `pnpm payload migrate:create` + `pnpm migrate` no start.
+    push: process.env.PAYLOAD_PUSH !== 'false',
   }),
   i18n: {
     supportedLanguages: {} as Record<string, never>,

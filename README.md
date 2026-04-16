@@ -113,12 +113,32 @@ pnpm seed                 # popula globals + collections base a partir de src/co
 
 ## Deploy (Railway)
 
-1. Crie um Postgres no Railway, copie o `DATABASE_URI`.
-2. Defina todas as envs no Railway (veja bloco acima).
+1. Adicione o plugin **Postgres** no Railway — ele injeta `DATABASE_URI`.
+2. Defina todas as demais envs (ver bloco acima).
 3. Build command: `pnpm build` · Start command: `pnpm start`.
-4. Após o primeiro deploy, rode `pnpm migrate` (migrations Payload) e
-   opcionalmente `pnpm seed` via Railway CLI ou Railway Shell.
-5. Acesse `/admin` e crie o primeiro admin.
+4. Nada de migrations manuais: com `PAYLOAD_PUSH=true` (default), o Payload
+   sincroniza o schema diretamente do código TypeScript no primeiro boot
+   do container — e a cada deploy subsequente propaga apenas as diferenças.
+5. Acesse `/admin` — a tela de criação do primeiro admin aparece
+   automaticamente.
+6. (Opcional) Para popular os globals + FAQs/packages/etc. a partir de
+   `src/content/*.ts`, abra o shell do Railway e rode `pnpm seed`. Essa
+   etapa é opcional: você pode simplesmente cadastrar tudo pelo painel.
+
+### Quando trocar para migrations versionadas
+
+`PAYLOAD_PUSH=true` é conveniente, mas reescreve o schema a partir do código
+sem review prévio — trocas de tipo ou renames podem dropar colunas. Quando
+o conteúdo estiver maduro:
+
+```bash
+# local, apontando para um banco de staging
+pnpm payload migrate:create --name baseline
+git add src/migrations && git commit -m "chore(db): baseline migrations"
+# no Railway:
+#   PAYLOAD_PUSH=false
+# e altere o start para: pnpm payload migrate && next start -p 3000
+```
 
 ## Imagens do site
 
